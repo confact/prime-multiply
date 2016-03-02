@@ -17,5 +17,7 @@ OptionParser.new do |opts|
   end
 end.parse!
 
-primes = CalculatePrime.new(options[:count])
-puts primes.present
+if options.include? :count
+    primes = CalculatePrime.new(options[:count])
+    puts primes.present
+end
