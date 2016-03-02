@@ -10,4 +10,6 @@ Go to directory and type in this in terminal:
 ## Testing
 Call  the RSPEC as normal with calling this in terminal:
 
-```rspec```
+```
+rspec
+```
