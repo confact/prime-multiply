@@ -14,8 +14,6 @@ require './array_addons'
 class CalculatePrime
   attr_reader :primes, :counted
 
-  FIXNUM_MAX = (2**(0.size * 8 - 2) - 1)
-
   # initialize the class and create number of primes picked
   def initialize(count)
     @primes = get_prime_numbers(count)
@@ -23,17 +21,24 @@ class CalculatePrime
   end
 
   # gets amount of primes from Prime class
-  def get_prime_numbers(size)
+  def get_prime_numbers(amount)
     primes = []
-    return [] if size < 1
-    (2..FIXNUM_MAX).each do |num|
-      # want to break it when got all asked primes so it will
-      # not go for infinite
-      break if primes.size >= size
-      # check if num is odd by dividenum and add it
-      primes.push(num) if (2..num - 1).all? { |dividenum| num % dividenum > 0 }
+    return [] if amount < 1
+    size = Math.ldexp(amount, 2)
+    for i in 0..size-2
+     primes[i] = i+2
     end
-    primes
+
+    index = 0
+    while Math.sqrt(primes.last).ceil >= primes[index]
+        (primes[index] * 2).step(primes.last, primes[index]) do
+          |x|
+          primes.delete(x)
+        end
+        index += 1
+    end
+
+    primes.first(amount)
   end
 
   # multiply the primes with it's values with
