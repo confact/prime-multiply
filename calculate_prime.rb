@@ -1,5 +1,4 @@
 require 'terminal-table'
-require 'optparse'
 require './array_addons'
 
 # This program multiplies all primes and
