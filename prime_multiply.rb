@@ -12,7 +12,7 @@ options = {}
 OptionParser.new do |opts|
   opts.banner = 'Usage: prime_multiply.rb [options]'
 
-  opts.on('-v', '--count N', Integer, 'Select amount of primes') do |v|
+  opts.on('-c', '--count N', Integer, 'Select amount of primes') do |v|
     options[:count] = v
   end
 end.parse!
