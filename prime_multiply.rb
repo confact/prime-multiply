@@ -7,7 +7,6 @@
 require 'rubygems'
 require 'bundler/setup'
 
-require 'benchmark'
 require 'optparse'
 require 'terminal-table'
 require './lib/prime-multiply/array_addons'
@@ -28,13 +27,11 @@ OptionParser.new do |opts|
   end
 end.parse!
 if options.include? :count
-    table = nil
-    puts Benchmark.measure {
-        primes = CalculatePrime.new
-        primes = primes.get_prime_numbers(options[:count])
-        multiply = MultiplyPrimes.new primes
-        counted = multiply.multiply
-        table = PresentPrimes.new primes, counted
-    }
-    puts table.present
+  table = nil
+  primes = CalculatePrime.new
+  primes = primes.get_prime_numbers(options[:count])
+  multiply = MultiplyPrimes.new primes
+  counted = multiply.multiply
+  table = PresentPrimes.new primes, counted
+  puts table.present
 end
